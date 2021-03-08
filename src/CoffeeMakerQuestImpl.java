@@ -197,13 +197,13 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		Item item = getCurrentRoom().getItem();
 		player.addItem(item);
 		if(item == Item.COFFEE) {
-			return "There might be something here...\nYou have found a delicious cup of coffee.";
+			return "There might be something here...\nYou found some caffeinated coffee!";
 		}
 		else if(item == Item.CREAM) {
 			return "There might be something here...\nYou found some creamy cream!\n";
 		}
 		else if(item == Item.SUGAR) {
-			return "You have found some sugar cubes.";
+			return "There might be something here...\nYou found some some sweet sugar!";
 		}
 		else {
 			return "You don't see anything out of the ordinary.";
@@ -259,7 +259,6 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		msg += "L - Look and collect any items in the room\n";
 		msg += "I - Show inventory of items collected\n";
 		msg += "D - Drink coffee made from items in inventory\n";
-//		msg += "H - Help\n";
 		return msg;
 	}
 }

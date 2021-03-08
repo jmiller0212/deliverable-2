@@ -325,7 +325,7 @@ public class CoffeeMakerQuestTest {
 	public void testDisplayHelp()
 	{
 		String test = cmq.processCommand("H");
-		assertEquals("N - Go north\nS - Go south\nL - Look and collect any items in the room\nI - Show inventory of items collected\nD - Drink coffee made from items in inventory\nH - Help\n", test);
+		assertEquals("N - Go north\nS - Go south\nL - Look and collect any items in the room\nI - Show inventory of items collected\nD - Drink coffee made from items in inventory\n", test);
 	}
 	@Test
 	public void checkPlayerOnlySugar()
