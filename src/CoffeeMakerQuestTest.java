@@ -261,7 +261,7 @@ public class CoffeeMakerQuestTest {
 		//"YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n"
 		//\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough.  You cannot study."
 		//\nYou lose!
-		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough.  You cannot study.\nYou lose!", ret1);
+		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n", ret1);
 		assertTrue(ret2);
 	}
 	
@@ -346,7 +346,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(true);
 		when(player.checkSugar()).thenReturn(false);
 		when(player.getInventoryString()).thenReturn("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n");
-		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the cream, but without caffeine you cannot study.\nYou lose!\n", cmq.processCommand("D"));
+		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the cream, but without caffeine, you cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	
 	@Test
@@ -364,7 +364,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(true);
 		when(player.checkSugar()).thenReturn(true);
 		when(player.getInventoryString()).thenReturn("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n");
-		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the sweetened cream, but without caffeine, you cannot study.\nYou lose!\n", cmq.processCommand("D"));
+		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the sweetened cream, but without caffeine you cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	@Test
 	public void checkPlayerNoItems() {
