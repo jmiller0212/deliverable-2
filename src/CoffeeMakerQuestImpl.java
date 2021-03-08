@@ -207,7 +207,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 			}
 		}
 		else {
-			msg += "\nYou don't see anything out of the ordinary.";
+			msg += "You don't see anything out of the ordinary.\n";
 		}
 		return msg;
 	}
