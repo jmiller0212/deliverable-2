@@ -197,13 +197,13 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		Item item = getCurrentRoom().getItem();
 		player.addItem(item);
 		if(item == Item.COFFEE) {
-			return "\nThere might be something here...\nYou found some caffeinated coffee!";
+			return "There might be something here...\nYou found some caffeinated coffee!\n";
 		}
 		else if(item == Item.CREAM) {
-			return "\nThere might be something here...\nYou found some creamy cream!";
+			return "There might be something here...\nYou found some creamy cream!\n";
 		}
 		else if(item == Item.SUGAR) {
-			return "\nThere might be something here...\nYou found some some sweet sugar!";
+			return "There might be something here...\nYou found some some sweet sugar!\n";
 		}
 		else {
 			return "\nYou don't see anything out of the ordinary.";
@@ -227,23 +227,23 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		}
 		else if (!player.checkCoffee() && !player.checkCream() && player.checkSugar()) // player only has sugar
 		{
-			return "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou drink the air, as you have no coffee, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
+			return "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou eat the sugar, but without caffeine, you cannot study.\nYou lose!\n";
 		}
 		else if (!player.checkCoffee() && player.checkCream() && !player.checkSugar()) // player only has cream
 		{
-			return "YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, or sugar.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
+			return "YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the cream, but without caffeine, you cannot study.\nYou lose!\n";
 		}
 		else if (player.checkCoffee() && !player.checkCream() && !player.checkSugar()) // player only has coffee
 		{
-			return "You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
+			return "You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nWithout cream, you get an ulcer and cannot study.\nYou lose!\n";
 		}
 		else if (player.checkCoffee() && player.checkCream() && !player.checkSugar()) // player has coffee and cream
 		{
-			return "You have a cup of delicious coffee.\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no sugar.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
+			return "You have a cup of delicious coffee.\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nWithout sugar, the coffee is too bitter. You cannot study.\nYou lose!\n";
 		}
 		else if (player.checkCoffee() && !player.checkCream() && player.checkSugar()) // player has coffee and sugar
 		{
-			return "You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou drink the air, as you have no cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
+			return "You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nWithout cream, you get an ulcer and cannot study.\nYou lose!\n";
 		}
 		else if (!player.checkCoffee() && player.checkCream() && player.checkSugar()) // player has cream and sugar
 		{
