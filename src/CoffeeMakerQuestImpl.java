@@ -206,7 +206,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 			return "You have found some sugar cubes.";
 		}
 		else {
-			return "You have found nothing!";
+			return "You don't see anything out of the ordinary.";
 		}
 	}
 	
@@ -254,11 +254,11 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 
 	public String displayHelp() {
 		String msg = "";
-		msg += "N - Moves the player north if there is an available room.\n";
-		msg += "S - Moves the player south if there is an available room.\n";
-		msg += "L - Look for items in your current room.\n";
-		msg += "I - Access your inventory of items currently possessed.\n";
-		msg += "D - Drink the mixture to decide the fate of your quest...\n";
+		msg += "N - Go north\n";
+		msg += "S - Go south\n";
+		msg += "L - Look and collect any items in the room\n";
+		msg += "I - Show inventory of items collected\n";
+		msg += "D - Drink coffee made from items in inventory\n";
 		msg += "H - Help\n";
 		return msg;
 	}

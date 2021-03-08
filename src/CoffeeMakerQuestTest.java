@@ -313,18 +313,19 @@ public class CoffeeMakerQuestTest {
 	 * Test case for displayHelp()
 	 * Preconditions: none
 	 * Execution steps: Call cmq.processCommand("H")
-	 * Postconditions: Return value of cmq.processCommand("H") is " N - Moves the player north if there is an available room.
-																	S - Moves the player south if there is an available room.
-																	L - Look for items in your current room.
-																	I - Access your inventory of items currently possessed.
-																	D - Drink the mixture to decide the fate of your quest...
-																	H - Help "															
+	 * Postconditions: Return value of cmq.processCommand("H") is 
+	 * 	msg += "N - Go north\n";
+		msg += "S - Go south\n";
+		msg += "L - Look and collect any items in the room\n";
+		msg += "I - Show inventory of items collected\n";
+		msg += "D - Drink coffee made from items in inventory\n";
+		msg += "H - Help\n";													
 	 */
 	@Test
 	public void testDisplayHelp()
 	{
 		String test = cmq.processCommand("H");
-		assertEquals("N - Moves the player north if there is an available room.\nS - Moves the player south if there is an available room.\nL - Look for items in your current room.\nI - Access your inventory of items currently possessed.\nD - Drink the mixture to decide the fate of your quest...\nH - Help\n", test);
+		assertEquals("N - Go north\nS - Go south\nL - Look and collect any items in the room\nI - Show inventory of items collected\nD - Drink coffee made from items in inventory\nH - Help\n", test);
 	}
 	@Test
 	public void checkPlayerOnlySugar()
@@ -392,5 +393,4 @@ public class CoffeeMakerQuestTest {
 //		String ret = (String) doorDoesNotExistMethod.invoke(cmq, "doorDoesNotExist");
 		assertEquals("A door in that direction does not exist!\n", ret);
 	}
-	
 }
