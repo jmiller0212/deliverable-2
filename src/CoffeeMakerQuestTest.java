@@ -328,7 +328,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(false);
 		when(player.checkSugar()).thenReturn(true);
 		when(player.getInventoryString()).thenReturn("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n");
-		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou eat the sugar, but without caffeine, you cannot study.\nYou lose!", cmq.processCommand("D"));
+		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou eat the sugar, but without caffeine, you cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	
 	@Test
@@ -346,7 +346,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(true);
 		when(player.checkSugar()).thenReturn(false);
 		when(player.getInventoryString()).thenReturn("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n");
-		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the cream, but without caffeine, you cannot study.\nYou lose!", cmq.processCommand("D"));
+		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the cream, but without caffeine, you cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	
 	@Test
@@ -355,7 +355,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(true);
 		when(player.checkSugar()).thenReturn(false);
 		when(player.getInventoryString()).thenReturn("You have a cup of delicious coffee.\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n");
-		assertEquals("You have a cup of delicious coffee.\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nWithout sugar, the coffee is too bitter. You cannot study.\nYou lose!", cmq.processCommand("D"));
+		assertEquals("You have a cup of delicious coffee.\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nWithout sugar, the coffee is too bitter. You cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	
 	@Test
@@ -364,7 +364,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(true);
 		when(player.checkSugar()).thenReturn(true);
 		when(player.getInventoryString()).thenReturn("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n");
-		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the sweetened cream, but without caffeine, you cannot study.\nYou lose!", cmq.processCommand("D"));
+		assertEquals("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the sweetened cream, but without caffeine, you cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	@Test
 	public void checkPlayerNoItems() {
@@ -372,7 +372,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(false);
 		when(player.checkSugar()).thenReturn(false);
 		when(player.getInventoryString()).thenReturn("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n");
-		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough.  You cannot study.\nYou lose!", cmq.processCommand("D"));
+		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough.  You cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	
 	/**
