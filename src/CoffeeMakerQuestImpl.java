@@ -17,7 +17,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return true if successful, false otherwise
 	 */
 	public boolean isGameOver() {
-		if(fullInventory() && drank) {
+		if(drank) {
 			return true;
 		}
 		return false;
@@ -78,10 +78,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		}
 		
 		for(Room r : rooms) {
-			if(r.getAdjective().equalsIgnoreCase(room.getAdjective())) {
-				return false;
-			}
-			if(r.getFurnishing().equalsIgnoreCase(room.getFurnishing())) {
+			if(r.getAdjective().equalsIgnoreCase(room.getAdjective()) || r.getFurnishing().equalsIgnoreCase(room.getFurnishing())) {
 				return false;
 			}
 		}
@@ -153,118 +150,109 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	public String processCommand(String cmd) {
 		switch(cmd.toUpperCase()) {
 		case "N":
-			moveNorth();
-			break;
+			return moveNorth();
 			
 		case "S":
-			moveSouth();
-			break;
+			return moveSouth();
 				
 		case "L":
-			look();
-			break;
+			return look();
 			
 		case "I":
-			displayInventory();
-			break;
+			return displayInventory();
 				
 		case "D":
-			drink();
-			break;
+			String ret = drink();
+			isGameOver();
+			return ret;
 			
 		case "H":
-			displayHelp();
-			break;
+			return displayHelp();
 				
 		}
+		return "What?\n";
+	}
+	
+	public String moveNorth() {
+		if(currRoom >= rooms.size()-1) {
+			return doorDoesNotExist();
+		}
+		currRoom++;
 		return "";
 	}
 	
-	public void moveNorth() {
-		if(currRoom >= rooms.size()-1) {
-			doorDoesNotExist();
-			return;
-		}
-		currRoom++;
-		String roomDesc = getCurrentRoom().getDescription();
-		System.out.println(roomDesc);
-		
-	}
-	
-	public void moveSouth() {
+	public String moveSouth() {
 		if(currRoom == 0) {
-			doorDoesNotExist();
-			return;
+			return doorDoesNotExist();
 		}
 		currRoom--;
-		String desc = getCurrentRoom().getDescription();
-		System.out.println(desc);
+		return "";
 	}
 	
-	private void doorDoesNotExist() {
-		System.out.println("A door in that direction does not exist.\n");
+	private String doorDoesNotExist() {
+		return "A door in that direction does not exist.\n";
 	}
 	
-	public void look() {
+	public String look() {
 		Item item = getCurrentRoom().getItem();
 		player.addItem(item);
 		if(item == Item.COFFEE) {
-			System.out.println("There might be something here...\nYou have found a delicious cup of coffee.");
+			return "There might be something here...\nYou have found a delicious cup of coffee.";
 		}
 		else if(item == Item.CREAM) {
-			System.out.print("There might be something here...\nYou found some creamy cream!\n");
+			return "There might be something here...\nYou found some creamy cream!\n";
 		}
 		else if(item == Item.SUGAR) {
-			System.out.println("You have found some sugar cubes.");
+			return "You have found some sugar cubes.";
 		}
 		else {
-			System.out.println("You have found nothing!");
+			return "You have found nothing!";
 		}
-		
 	}
 	
-	public void displayInventory() {
+	public String displayInventory() {
 		String msg = player.getInventoryString();
-		System.out.println(msg);
+		return msg;
 	}
 	
-	public void drink() {
+	public String drink() {
 		drank = true;
 		if (player.checkCoffee() && player.checkCream() && player.checkSugar()) // player has all 3
 		{
-			System.out.println("You have a cup of delicious coffee.\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the beverage and are ready to study!\nYou win!\n");
+			return "You have a cup of delicious coffee.\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the beverage and are ready to study!\nYou win!\n";
 		}
 		else if (!player.checkCoffee() && !player.checkCream() && !player.checkSugar()) // player has none
 		{
-			System.out.println("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n");
+			return "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
 		}
 		else if (!player.checkCoffee() && !player.checkCream() && player.checkSugar()) // player only has sugar
 		{
-			System.out.println( "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou drink the air, as you have no coffee, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n");
+			return "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou drink the air, as you have no coffee, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
 		}
 		else if (!player.checkCoffee() && player.checkCream() && !player.checkSugar()) // player only has cream
 		{
-			System.out.println("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, or sugar.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n");
+			return "YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no coffee, or sugar.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
 		}
 		else if (player.checkCoffee() && !player.checkCream() && !player.checkSugar()) // player only has coffee
 		{
-			System.out.println("You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n");
+			return "You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
 		}
 		else if (player.checkCoffee() && player.checkCream() && !player.checkSugar()) // player has coffee and cream
 		{
-			System.out.println("You have a cup of delicious coffee.\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no sugar.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n");
+			return "You have a cup of delicious coffee.\nYou have some fresh cream.\nYOU HAVE NO SUGAR!\n\nYou drink the air, as you have no sugar.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
 		}
 		else if (player.checkCoffee() && !player.checkCream() && player.checkSugar()) // player has coffee and sugar
 		{
-			System.out.println("You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou drink the air, as you have no cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n");
+			return "You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYou have some tasty sugar.\n\nYou drink the air, as you have no cream.\nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
 		}
 		else if (!player.checkCoffee() && player.checkCream() && player.checkSugar()) // player has cream and sugar
 		{
-			System.out.println("YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the air, as you have no coffee. \nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n");
+			return "YOU HAVE NO COFFEE!\nYou have some fresh cream.\nYou have some tasty sugar.\n\nYou drink the air, as you have no coffee. \nThe air is invigorating, but not invigorating enough. You cannot study.\nYou lose!\n";
 		}
+		return "";
 	}
 
-	public void displayHelp() {
+	public String displayHelp() {
 		String msg = "";
 		msg += "N - Moves the player north if there is an available room.\n";
 		msg += "S - Moves the player south if there is an available room.\n";
@@ -272,14 +260,6 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		msg += "I - Access your inventory of items currently possessed.\n";
 		msg += "D - Drink the mixture to decide the fate of your quest...\n";
 		msg += "H - Help\n";
-		System.out.print(msg);
-	}
-	
-	public boolean fullInventory() {
-		if(player.checkCoffee() && player.checkCream() && player.checkSugar()) {
-			return true;
-		} else {
-			return false;
-		}
+		return msg;
 	}
 }
