@@ -197,16 +197,16 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		Item item = getCurrentRoom().getItem();
 		player.addItem(item);
 		if(item == Item.COFFEE) {
-			return "There might be something here...\nYou found some caffeinated coffee!\n";
+			return "\nThere might be something here...\nYou found some caffeinated coffee!";
 		}
 		else if(item == Item.CREAM) {
-			return "There might be something here...\nYou found some creamy cream!\n";
+			return "\nThere might be something here...\nYou found some creamy cream!";
 		}
 		else if(item == Item.SUGAR) {
-			return "There might be something here...\nYou found some some sweet sugar!\n";
+			return "\nThere might be something here...\nYou found some some sweet sugar!";
 		}
 		else {
-			return "You don't see anything out of the ordinary.\n";
+			return "\nYou don't see anything out of the ordinary.";
 		}
 	}
 	
