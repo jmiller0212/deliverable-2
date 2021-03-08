@@ -259,7 +259,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		msg += "L - Look and collect any items in the room\n";
 		msg += "I - Show inventory of items collected\n";
 		msg += "D - Drink coffee made from items in inventory\n";
-		msg += "H - Help\n";
+//		msg += "H - Help\n";
 		return msg;
 	}
 }
