@@ -240,7 +240,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 					msg += "\nYou drink the cream, but without caffeine, you cannot study.";
 				}
 				else {
-					msg += "\nYou drink the sweetened cream, but without caffeine, you cannot study.";
+					msg += "\nYou drink the sweetened cream, but without caffeine you cannot study.";
 				}
 			}
 			else if(player.checkSugar()) {
