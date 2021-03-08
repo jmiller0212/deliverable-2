@@ -298,17 +298,7 @@ public class CoffeeMakerQuestTest {
 		assertFalse(cmq.addRoomAtNorth(null, null, null));
 		verify(room6, Mockito.never()).setNorthDoor(null);
 	}
-	
-//	@Test
-//	public void testAddRoomAtNorthDuplicateAdjective() {
-//		Room myRoom = mock(Room.class);
-//		when(myRoom.getFurnishing()).thenReturn("Flat energy drink");
-//		when(myRoom.getItem()).thenReturn(null);
-//		assertFalse(cmq.addRoomAtNorth(myRoom, "North", "South"));
-//		verify(room6, Mockito.never()).setNorthDoor("North");
-//		verify(myRoom, Mockito.never()).setSouthDoor("South");
-//	}
-	
+
 	/**
 	 * Test case for displayHelp()
 	 * Preconditions: none
