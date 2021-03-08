@@ -223,7 +223,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		// win condition
 		if (player.checkCoffee() && player.checkCream() && player.checkSugar()) {
 			msg += "\nYou drink the beverage and are ready to study!";
-			msg += "\nYou win!";
+			msg += "\nYou win!\n";
 		}
 		// all lose condition outputs
 		else {
@@ -247,7 +247,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 				msg += "\nYou eat the sugar, but without caffeine, you cannot study.";
 			}
 			else {
-				msg += "\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough.  You cannot study.";
+				msg += "\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough. You cannot study.";
 			}
 			msg += "\nYou lose!\n";
 		}
