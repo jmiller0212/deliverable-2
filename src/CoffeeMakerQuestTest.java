@@ -204,6 +204,7 @@ public class CoffeeMakerQuestTest {
 	 */
 	@Test
 	public void testProcessCommandLCream() {
+		cmq.setCurrentRoom(room1);
 		String ret = cmq.processCommand("l");
 		assertEquals("There might be something here...\nYou found some creamy cream!\n", ret);
 		verify(player, Mockito.atLeastOnce()).addItem(Item.CREAM);
