@@ -337,7 +337,7 @@ public class CoffeeMakerQuestTest {
 		when(player.checkCream()).thenReturn(false);
 		when(player.checkSugar()).thenReturn(false);
 		when(player.getInventoryString()).thenReturn("You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n");
-		assertEquals("You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nWithout cream, you get an ulcer and cannot study.\nYou lose!", cmq.processCommand("D"));
+		assertEquals("You have a cup of delicious coffee.\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n\nWithout cream, you get an ulcer and cannot study.\nYou lose!\n", cmq.processCommand("D"));
 	}
 	
 	@Test
