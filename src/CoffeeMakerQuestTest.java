@@ -176,7 +176,7 @@ public class CoffeeMakerQuestTest {
 		assertTrue(ret1);
 		System.out.println("testSetCurrentRoom: "+ret1);
 		System.out.println("testSetCurrentRoom: "+ret2);
-		assertEquals(ret2, room3);
+		assertEquals(room3, ret2);
 	}
 	
 	/**
@@ -191,7 +191,7 @@ public class CoffeeMakerQuestTest {
 		cmq.setPlayer(player);
 		String ret = cmq.processCommand("I");
 		System.out.println("testProcessCommandI ret: "+ret);
-		assertEquals(cmq.processCommand("I"), "YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n");
+		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n",cmq.processCommand("I"));
 	}
 	
 	/**
@@ -205,7 +205,7 @@ public class CoffeeMakerQuestTest {
 	@Test
 	public void testProcessCommandLCream() {
 		String ret = cmq.processCommand("l");
-		assertEquals(ret, "There might be something here...\nYou found some creamy cream!\n");
+		assertEquals("There might be something here...\nYou found some creamy cream!\n", ret);
 		verify(player, Mockito.atLeastOnce()).addItem(Item.CREAM);
 	}
 	
