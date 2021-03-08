@@ -156,7 +156,6 @@ public class CoffeeMakerQuestTest {
 	@Test
 	public void testGetCurrentRoom() {
 		Room ret = cmq.getCurrentRoom();
-		System.out.println("testGetCurrentRoom ret: "+ret);
 		assertNull(ret);
 	}
 	
@@ -174,8 +173,6 @@ public class CoffeeMakerQuestTest {
 		boolean ret1 = cmq.setCurrentRoom(room3);
 		Room ret2 = cmq.getCurrentRoom();
 		assertTrue(ret1);
-		System.out.println("testSetCurrentRoom: "+ret1);
-		System.out.println("testSetCurrentRoom: "+ret2);
 		assertEquals(room3, ret2);
 	}
 	
@@ -190,8 +187,7 @@ public class CoffeeMakerQuestTest {
 		when(player.getInventoryString()).thenReturn("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n");
 		cmq.setPlayer(player);
 		String ret = cmq.processCommand("I");
-		System.out.println("testProcessCommandI ret: "+ret);
-		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n",cmq.processCommand("I"));
+		assertEquals("YOU HAVE NO COFFEE!\nYOU HAVE NO CREAM!\nYOU HAVE NO SUGAR!\n", ret);
 	}
 	
 	/**
@@ -306,6 +302,23 @@ public class CoffeeMakerQuestTest {
 	}
 
 	/**
+	 * Test case for void setCurrentRoom(Room room) and Room getCurrentRoom().
+	 * Preconditions: room1 ~ room6 have been added to cmq.
+	 * Execution steps: Call cmq.setCurrentRoom(null).
+	 * Postconditions: Return value of cmq.setCurrentRoom(null) is false. 
+	 */
+	@Test
+	public void testSetCurrentRoomNull() {
+		assertFalse(cmq.setCurrentRoom(null));
+	}
+	
+	@Test
+	public void testProcessCommandBogusInput() {
+		String ret = cmq.processCommand("j");
+		assertEquals("What?\n", ret);
+	}
+	
+	/**
 	 * Test case for displayHelp()
 	 * Preconditions: none
 	 * Execution steps: Call cmq.processCommand("H")
@@ -377,10 +390,10 @@ public class CoffeeMakerQuestTest {
 	}
 	
 	/**
-	 * Test case for private doorDoesNotExist()
-	 * Precondtions: none
-	 * Executionsteps: returnValue = doorDoesNotExist()
-	 * Postconditions: return value should equal 
+	 * Test case for private doorDoesNotExist().
+	 * Preconditions: none.
+	 * Execution steps: returnValue = doorDoesNotExist().
+	 * Postconditions: return value should equal "A door in that direction does not exist.\n".
 	 * @throws InvocationTargetException 
 	 * @throws IllegalArgumentException 
 	 * @throws IllegalAccessException 
@@ -390,7 +403,6 @@ public class CoffeeMakerQuestTest {
 		Method doorDoesNotExistMethod = CoffeeMakerQuestImpl.class.getDeclaredMethod("doorDoesNotExist");
 		doorDoesNotExistMethod.setAccessible(true);
 		String ret = (String) doorDoesNotExistMethod.invoke(cmq);
-//		String ret = (String) doorDoesNotExistMethod.invoke(cmq, "doorDoesNotExist");
-		assertEquals("A door in that direction does not exist!\n", ret);
+		assertEquals("A door in that direction does not exist.\n", ret);
 	}
 }

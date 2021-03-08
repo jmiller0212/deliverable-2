@@ -5,7 +5,8 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	Player player;
 	
 	ArrayList<Room> rooms = new ArrayList<Room>();
-	private int currRoom = -1;
+	private int currRoom = 0;
+	private boolean initializedCurrRoom = false;
 	private boolean drank = false;	
 	
 	CoffeeMakerQuestImpl() { }
@@ -94,7 +95,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return room player is in, or null if not yet initialized
 	 */ 
 	public Room getCurrentRoom() {
-		if(currRoom < 0) {
+		if(!initializedCurrRoom) {
 			return null;
 		}
 		return rooms.get(currRoom);
@@ -111,7 +112,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		if(room == null) {
 			return false;
 		}
-		
+		initializedCurrRoom = true;
 		for(int i = 0; i < rooms.size(); i++) {
 			Room temp = rooms.get(i);
 			if(temp.equals(room)) {
