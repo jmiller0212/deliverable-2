@@ -249,7 +249,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 			else {
 				msg += "\nYou drink the air, as you have no coffee, sugar, or cream.\nThe air is invigorating, but not invigorating enough.  You cannot study.";
 			}
-			msg += "\nYou lose!";
+			msg += "\nYou lose!\n";
 		}
 		return msg;
 	}
